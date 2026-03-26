@@ -249,7 +249,7 @@ export function ChatBox({
               {inputMode === 'cursor' ? "I don't have a keyboard" : inputMode === 'touch' ? "Switch to Tablet Mode" : "Switch to Cursor Mode"}
             </button>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono opacity-40">
-              Version 1.25.26
+              Version 3.25.26
             </div>
           </div>
         </div>
@@ -609,7 +609,7 @@ export function ChatBox({
             <div className={clsx("w-1.5 h-1.5 rounded-full animate-pulse", credits < 50 ? "bg-red-500" : "bg-blue-500")} />
             Credits: {credits.toLocaleString()}
           </div>
-          <div className="text-[10px] opacity-30 font-mono">v1.25.26</div>
+          <div className="text-[10px] opacity-30 font-mono">v3.25.26</div>
         </div>
         <div className="flex items-end gap-3">
           <input 

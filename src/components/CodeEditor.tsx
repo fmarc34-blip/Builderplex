@@ -87,7 +87,7 @@ export function CodeEditor({ inputMode, theme, onSaveProject }: CodeEditorProps)
       
       <div className="p-4 border-t border-white/5 text-center">
         <span className="text-[10px] font-mono opacity-20 uppercase tracking-widest">
-          Builderplex Self-Coding Environment v1.25.26
+          Builderplex Self-Coding Environment v3.25.26
         </span>
       </div>
     </div>

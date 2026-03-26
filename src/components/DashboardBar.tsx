@@ -190,7 +190,7 @@ export function DashboardBar({ theme, inputMode }: DashboardBarProps) {
                 <footer className="p-6 border-t border-white/10 bg-black/10">
                   <div className="flex items-center justify-between text-[10px] font-mono opacity-30">
                     <span>System Status: Online</span>
-                    <span>Build: 1.25.26</span>
+                    <span>Build: 3.25.26</span>
                   </div>
                 </footer>
               </div>

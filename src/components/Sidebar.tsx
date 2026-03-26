@@ -180,7 +180,7 @@ export function Sidebar({
           "text-[10px] font-mono opacity-30 text-center pt-2",
           !isOpen && "hidden"
         )}>
-          Version 1.25.26
+          Version 3.25.26
         </div>
       </div>
     </aside>

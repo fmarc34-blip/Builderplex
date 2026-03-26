@@ -58,37 +58,6 @@ export function ChatBox({
     if (credits < 10) return;
     setIsTyping(true);
     try {
-      // First, show that we are verifying
-      const verifyMsg: Message = {
-        id: 'verify-' + Date.now(),
-        role: 'assistant',
-        content: "Verifying your request...",
-        type: 'chat'
-      };
-      updateMessages([...messages, verifyMsg]);
-      
-      // Simulate verification delay - set to 15 seconds as requested
-      await new Promise(resolve => setTimeout(resolve, 15000));
-
-      // Check if we need packages - ONLY if not already handled for this chat
-      if (!chat?.packagesHandled) {
-        const preCheck = await invokeLLM([...messages, { id: 'pre', role: 'user', content: "Does this request require installing any npm packages? If yes, list them. If no, say 'None'." }]);
-        
-        if (preCheck.toLowerCase().includes('install') || (preCheck.toLowerCase() !== 'none' && preCheck.length > 5)) {
-          const aiMsg: Message = {
-            id: (Date.now() + 1).toString(),
-            role: 'assistant',
-            content: "Install packages?",
-            type: 'package-request',
-            packages: ['react-router-dom', 'framer-motion'] // Simplified for demo
-          };
-          // Replace the verify message with the package request
-          updateMessages([...messages, aiMsg]);
-          setIsTyping(false);
-          return;
-        }
-      }
-
       const aiContent = await invokeLLM(messages);
       
       const codeMatch = aiContent.match(/```(\w+)?\n([\s\S]*?)```/);
@@ -103,13 +72,6 @@ export function ChatBox({
         language: codeMatch ? codeMatch[1] : undefined
       };
 
-      if (!chat?.packagesHandled && (aiContent.toLowerCase().includes('install') || aiContent.toLowerCase().includes('package'))) {
-        aiMsg.type = 'package-request';
-        aiMsg.content = "Install packages?";
-        aiMsg.packages = ['react-router-dom', 'framer-motion'];
-      }
-
-      // Replace the verify message with the final response
       updateMessages([...messages, aiMsg]);
     } catch (error: any) {
       const errorMsg: Message = {
@@ -630,7 +592,7 @@ export function ChatBox({
             <div className="w-2 h-2 bg-current rounded-full" />
             <div className="w-2 h-2 bg-current rounded-full animate-bounce" />
             <div className="w-2 h-2 bg-current rounded-full" />
-            <span>Verifying request...</span>
+            <span>Coding...</span>
           </div>
         )}
       </div>
